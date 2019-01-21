@@ -10,60 +10,54 @@ import java.util.List;
 
 public class MySqlOrderDao extends MySqlConnect implements OrderDAO {
     private Order order;
-    private List<Order> ordersList=new ArrayList<>();
+    private List<Order> ordersList = new ArrayList<>();
+
     @Override
-    public void initOrdersList() {
+    public void initOrdersList() throws SQLException {
         connectDb();
         String query = "SELECT *FROM orders";
-        try {
-            ResultSet rs = getStatement().executeQuery(query);
-            while (rs.next()) {
-                order = new Order(rs.getInt("order_id")
-                        ,rs.getInt("train_id")
-                        ,rs.getInt("passanger_id"));
-                System.out.println(order);
-                ordersList.add(order);
-            }
-        } catch (SQLException ex) {
-            ex.getMessage();
+
+        ResultSet rs = getStatement().executeQuery(query);
+        while (rs.next()) {
+            order = new Order(rs.getInt("order_id")
+                    , rs.getInt("train_id")
+                    , rs.getInt("passanger_id"));
+            System.out.println(order);
+            ordersList.add(order);
         }
         closeConnection();
     }
 
     @Override
-    public int getTrainId(int orderId) {
+    public int getTrainId(int orderId) throws SQLException {
         connectDb();
-        int trainId=0;
-        String query="SELECT train_id FROM orders WHERE order_id="+orderId;
-        try{
-            ResultSet rs=getStatement().executeQuery(query);
-            while (rs.next()){
-                trainId=rs.getInt("train_id");
+        int trainId = 0;
+        String query = "SELECT train_id FROM orders WHERE order_id=" + orderId;
+        ResultSet rs = getStatement().executeQuery(query);
+        while (rs.next()) {
+            trainId = rs.getInt("train_id");
 
-            }
-        }catch (SQLException ex){
-            ex.printStackTrace();
         }
         closeConnection();
         return trainId;
     }
 
     @Override
-    public int getPassangerId(int orderId) {
+    public int getPassangerId(int orderId) throws SQLException {
         connectDb();
-        int passangerId=0;
-        String query="SELECT passanger_id FROM orders WHERE order_id="+orderId;
-        try{
-            ResultSet rs=getStatement().executeQuery(query);
-            while (rs.next()){
-                passangerId=rs.getInt("passanger_id");
+        int passangerId = 0;
+        String query = "SELECT passanger_id FROM orders WHERE order_id=" + orderId;
+        ResultSet rs = getStatement().executeQuery(query);
+        while (rs.next()) {
+            passangerId = rs.getInt("passanger_id");
 
-            }
-        }catch (SQLException ex){
-            ex.printStackTrace();
         }
+
         closeConnection();
         return passangerId;
     }
 
+    public List<Order> getOrdersList() {
+        return ordersList;
+    }
 }

@@ -4,6 +4,16 @@ import java.util.Objects;
 
 
 public class Train {
+    private int trainId;
+    private String departureDate;
+    private String departureTime;
+    private String arrivalDate;
+    private String arrivalTime;
+    private int trainNumber;
+    private String initialStation;
+    private String endStation;
+    private double cost;
+
     public int getTrainId() {
         return trainId;
     }
@@ -40,9 +50,7 @@ public class Train {
         return arrivalTime;
     }
 
-    private int trainId;
-    private int trainNumber;
-    private String initialStation;
+
 
     @Override
     public boolean equals(Object o) {
@@ -65,12 +73,19 @@ public class Train {
         return Objects.hash(trainId, trainNumber, initialStation, endStation, cost, departureDate, departureTime, arrivalDate, arrivalTime);
     }
 
-    private String endStation;
-    private double cost;
-    private String departureDate;
-    private String departureTime;
-    private String arrivalDate;
-    private String arrivalTime;
+
+
+    public Train(int trainNumber, String initialStation, String endStation, double cost, String departureDate, String departureTime, String arrivalDate, String arrivalTime) {
+        this.trainNumber = trainNumber;
+        this.initialStation = initialStation;
+        this.endStation = endStation;
+        this.cost = cost;
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+        this.arrivalDate = arrivalDate;
+        this.arrivalTime = arrivalTime;
+    }
+
 
     public Train(int trainId, int trainNumber, String initialStation, String endStation, double cost,
                  String departureDate, String departureTime, String arrivalDate, String arrivalTime) {

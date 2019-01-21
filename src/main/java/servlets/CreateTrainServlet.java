@@ -27,7 +27,6 @@ public class CreateTrainServlet extends HttpServlet {
         String initialStation = request.getParameter("initialStation");
         double cost = Double.parseDouble(request.getParameter("cost"));
         String endStation = request.getParameter("endStation");
-
         LocalDate arrivalDateFilter = LocalDate.parse(request.getParameter("arrivalDate"));
         String arrivalDate = arrivalDateFilter.toString();
         LocalDate departureDateFilter = LocalDate.parse(request.getParameter("departureDate"));
@@ -38,7 +37,7 @@ public class CreateTrainServlet extends HttpServlet {
             out.print("Error train number,try again");
         } else if (initialStation.length() == 0 || !initialStation.matches("^\\D*$")) {
             out.print("Error initial station");
-        } else if (initialStation.equals(endStation) || endStation.equals(initialStation)) {
+        } else if (initialStation.equals(endStation)) {
             out.print("Error initial station can`t be equal to end station");
         } else if (departureDateFilter.isAfter(arrivalDateFilter)) {
             out.print("error date (Departure Date is after Arrival Date");
@@ -49,7 +48,7 @@ public class CreateTrainServlet extends HttpServlet {
         } else {
             try {
                 trainDAO.createTrain(new Train(trainNumber, initialStation, endStation, cost, departureDate, departureTime, arrivalDate, arrivalTime));
-                out.print("train added");
+                out.print("Train Created");
             } catch (SQLException ex) {
                 out.print("Can`t create a train,check your trainId or trainNumber they must be unique");
             }
@@ -58,6 +57,7 @@ public class CreateTrainServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
     }
+
 }
+

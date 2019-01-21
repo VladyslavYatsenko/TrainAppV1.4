@@ -14,5 +14,7 @@ public interface PassangerDAO {
 
     public abstract int getTrainId(int passangerId) throws SQLException;
 
+    public abstract void createPassanger(Passanger passanger)throws SQLException;
+
     public abstract List<Passanger> getPassangersList();
 }

@@ -5,12 +5,11 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public abstract class MySqlConnect {
-
     private String url = "jdbc:mysql://localhost/trainproject?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private String user = "root";
     private String password = "root";
-    protected Statement statement;
-    protected Connection connection;
+    private Statement statement;
+    private Connection connection;
 
     public Statement getStatement() {
         return statement;

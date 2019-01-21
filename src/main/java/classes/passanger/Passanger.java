@@ -34,6 +34,12 @@ public class Passanger {
         return trainId;
     }
 
+    public Passanger(String firstName, String lastName, int trainId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.trainId = trainId;
+    }
+
     public void setTrainId(int trainId) {
         this.trainId = trainId;
     }

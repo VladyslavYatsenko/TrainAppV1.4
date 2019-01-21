@@ -1,19 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="/style" media="all">
 <html>
 <head>
     <title>Admin page</title>
 </head>
 <body>
-
-<style>
-    a {
-        text-decoration: none;
-    }
-    a {
-        color: black; /* Цвет ссылок */
-    }
-</style>
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -22,7 +14,7 @@
     }
 %>
 Welcome ${username}
-<table border="2" bgcolor="#dc143c" cellpadding="2" cellspacing="0">
+<table align="center">
     <tr>
         <td><a href="index.jsp" type="">Initial Page</a></td>
         <td><a href="adminPage.jsp">Admin Page</a></td>
@@ -31,10 +23,15 @@ Welcome ${username}
         <td><a href="chooseTrainPage.jsp">Choose Train Page</a></td>
     </tr>
 </table>
-
-<form action="AdminServletTrains">
-    <input type="submit" value="Show Project Information">
-    <table border="2" bgcolor="#dc143c" cellpadding="2" cellspacing="0">
+<form action="AdminTrainsServlet" method="post">
+    <input type="submit" value="Create Train">
+</form>
+<form action="LogoutServlet">
+    <input type="submit" value="Logout">
+</form>
+<form action="AdminTrainsServlet">
+    <input type="submit" value="Show Project Information" align="center">
+    <table>
         <H3>Trains List:</H3>
         <thead>
         <tr>
@@ -65,7 +62,7 @@ Welcome ${username}
         </c:forEach>
         </tbody>
     </table>
-    <table border="2" bgcolor="#dc143c" cellpadding="2" cellspacing="0">
+    <table>
         <H3>Passangers List</H3>
         <thead>
         <tr>
@@ -86,7 +83,7 @@ Welcome ${username}
         </c:forEach>
         </tbody>
     </table>
-    <table border="2" bgcolor="#dc143c" cellpadding="2" cellspacing="0">
+    <table>
         <H3>Orders List</H3>
         <thead>
         <tr>
@@ -105,12 +102,6 @@ Welcome ${username}
         </c:forEach>
         </tbody>
     </table>
-</form>
-<form action="LogoutServlet">
-    <input type="submit" value="Logout">
-</form>
-<form action="AdminServletTrains" method="post">
-    <input type="submit" value="Create Train">
 </form>
 
 

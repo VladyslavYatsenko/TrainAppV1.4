@@ -1,51 +1,50 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<link rel="stylesheet" type="text/css" href="/style" media="all">
 <html>
 <head>
     <title>Creation Ticket</title>
 </head>
 <body>
 <form action="CreateTrainServlet" method="post">
-    <table border="2" bgcolor="#dc143c" cellpadding="2" cellspacing="0">
-
+    <table align="center">
+        <caption>Create Train Panel</caption>
         <tr>
-            <td><H3>Create Train</H3></td>
+            <td>Input Train Number:</td>
+            <td> <input type="number" name="trainNumber" style="width: 100%"></td>
         </tr>
         <tr>
-            <td>Input train Number:</td>
-            <td> <input type="number" name="trainNumber"></td>
+            <td>Input Initial Station:</td>
+            <td> <input type="text" name="initialStation" style="width: 100%"></td>
         </tr>
         <tr>
-            <td>Input initial Station:</td>
-            <td> <input type="text" name="initialStation"></td>
-        </tr>
-        <tr>
-            <td>Input end Station:</td>
-            <td> <input type="text" name="endStation"></td>
+            <td>Input End Station:</td>
+            <td> <input type="text" name="endStation" style="width: 100%"></td>
         </tr>
         <tr>
             <td>Input Cost:</td>
-            <td> <input type="text" name="cost"></td>
+            <td> <input type="text" name="cost" style="width: 100%"></td>
         </tr>
         <tr>
             <td>Departure Date:</td>
-            <td> <input type="date" name="departureDate"></td>
+            <td> <input type="date" name="departureDate" style="width: 100%"></td>
         </tr>
         <tr>
             <td>Departure Time:</td>
-            <td> <input type="time" name="departureTime"></td>
+            <td> <input type="time" name="departureTime" style="width: 100%"></td>
         </tr>
         <tr>
             <td>Arrival Date:</td>
-            <td> <input type="date" name="arrivalDate"></td>
+            <td> <input type="date" name="arrivalDate" style="width: 100%"></td>
         </tr>
         <tr>
             <td>Arrival Time:</td>
-            <td> <input type="time" name="arrivalTime"></td>
+            <td> <input type="time" name="arrivalTime" style="width: 100%"></td>
 
         </tr>
         <tr>
+            <td>Create</td>
             <td>
-                <input type="submit" name="Create Train">
+                <input type="submit" value="Create Train" style="width: 100%">
             </td>
         </tr>
     </table>

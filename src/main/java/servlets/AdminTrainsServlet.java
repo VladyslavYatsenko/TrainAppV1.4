@@ -19,8 +19,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/AdminServletTrains")
-public class AdminServletTrains extends HttpServlet {
+@WebServlet("/AdminTrainsServlet")
+public class AdminTrainsServlet extends HttpServlet {
     DAOFactory daoFactory;
     List<Train> trainsList = new ArrayList<>();
     List<Order> ordersList = new ArrayList<>();

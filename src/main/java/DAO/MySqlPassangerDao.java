@@ -70,6 +70,18 @@ public class MySqlPassangerDao extends MySqlConnect implements PassangerDAO {
 
     }
 
+    @Override
+    public void createPassanger(Passanger passanger) throws SQLException {
+        connectDb();
+        String query="INSERT INTO passangers " +
+                "(passanger_firstName,passanger_lastName,train_identificationNumber) VALUES ("
+                +"'"+passanger.getFirstName()+"',"
+                +"'"+passanger.getLastName()+"',"
+                +"'"+passanger.getTrainId()+"')";
+        getStatement().executeUpdate(query);
+        closeConnection();
+    }
+
     public List<Passanger> getPassangersList() {
         return passangersList;
     }

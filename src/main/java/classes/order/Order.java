@@ -4,6 +4,10 @@ public class Order {
     private int orderId;
     private int passangerId;
     private int trainId;
+
+    public Order() {
+    }
+
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }

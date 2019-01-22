@@ -1,6 +1,5 @@
 package servlets;
 
-import DAO.daoFactory.DAOFactory;
 import DAO.interfaces.TrainDAO;
 import classes.train.Train;
 
@@ -13,7 +12,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @WebServlet("/CreateTrainServlet")
 public class CreateTrainServlet extends HttpServlet {

@@ -14,6 +14,10 @@ public class Train {
     private String endStation;
     private double cost;
 
+    public Train() {
+
+    }
+
     public int getTrainId() {
         return trainId;
     }

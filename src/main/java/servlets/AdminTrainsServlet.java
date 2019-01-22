@@ -1,7 +1,5 @@
 package servlets;
 
-import DAO.MySqlTrainDao;
-import DAO.daoFactory.DAOFactory;
 import DAO.interfaces.OrderDAO;
 import DAO.interfaces.PassangerDAO;
 import DAO.interfaces.TrainDAO;

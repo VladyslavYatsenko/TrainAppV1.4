@@ -1,6 +1,5 @@
 package servlets;
 
-import DAO.daoFactory.DAOFactory;
 import DAO.interfaces.TrainDAO;
 import classes.train.Train;
 

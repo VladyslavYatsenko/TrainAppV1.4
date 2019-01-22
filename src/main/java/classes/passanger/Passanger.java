@@ -34,6 +34,9 @@ public class Passanger {
         return trainId;
     }
 
+    public Passanger() {
+    }
+
     public Passanger(String firstName, String lastName, int trainId) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlPassangerDao extends MySqlConnect implements PassangerDao {
-    final static Logger logger = Logger.getLogger(DataAccessException.class);
+    final static Logger logger = Logger.getLogger(MySqlPassangerDao.class);
 
     @Override
     public List<Passanger> initPassengersList() throws DataAccessException {

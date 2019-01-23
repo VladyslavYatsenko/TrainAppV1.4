@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlOrderDao extends MySqlConnect implements OrderDao {
-    final static Logger logger=Logger.getLogger(DataAccessException.class);
+    final static Logger logger=Logger.getLogger(MySqlOrderDao.class);
     @Override
     public List<Order> initOrdersList() throws DataAccessException {
         List<Order> ordersList=new ArrayList<>();

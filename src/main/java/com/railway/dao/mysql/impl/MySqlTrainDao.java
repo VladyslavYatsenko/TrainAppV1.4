@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlTrainDao extends MySqlConnect implements TrainDao {
-    final static Logger logger=Logger.getLogger(DataAccessException.class);
+    final static Logger logger=Logger.getLogger(MySqlTrainDao.class);
     @Override
     public List<Train> initTrainsList() throws DataAccessException {
         List<Train> trainsList = new ArrayList<>();

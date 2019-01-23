@@ -1,9 +1,14 @@
 package servlets;
 
-import DAO.interfaces.PassangerDAO;
-import DAO.interfaces.TrainDAO;
+
 import classes.passanger.Passanger;
 import classes.train.Train;
+import com.railway.dao.DaoFactory;
+import com.railway.dao.PassangerDao;
+import com.railway.dao.TrainDao;
+import com.railway.dao.mysql.impl.DataAccessException;
+import com.railway.dao.mysql.impl.MySqlDaoFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,33 +20,37 @@ import java.sql.SQLException;
 
 @WebServlet("/TicketRegistrationServlet")
 public class TicketRegistrationServlet extends HttpServlet {
-    DAOFactory daoFactory;
     Train userTrain;
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    DaoFactory daoFactory;
+    PassangerDao passangerDao;
+    TrainDao trainDao;
+    final static Logger logger=Logger.getLogger(TicketRegistrationServlet.class);
 
+    public void init() {
+        daoFactory=new MySqlDaoFactory();
+        passangerDao = daoFactory.createPassangerDao();
+        trainDao=daoFactory.createTrainDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        daoFactory=new DAOFactory();
-        PassangerDAO passangerDAO=daoFactory.createPassangerDao();
-        TrainDAO trainDAO=daoFactory.createTrainDao();
-        int trainId=Integer.parseInt(request.getParameter("trainId"));
-        String firstName=request.getParameter("firstName");
-        String lastName=request.getParameter("lastName");
-        try{
-            passangerDAO.createPassanger(new Passanger(firstName,lastName,trainId));
-            trainDAO.initTrainsList();
-        }catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        for(Train train:trainDAO.getTrainsList()){
-            if(trainId==train.getTrainId()){
-                userTrain=train;
+        init();
+        int trainId = Integer.parseInt(request.getParameter("trainId"));
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        try {
+            passangerDao.createPassanger(new Passanger(firstName, lastName, trainId));
+            for (Train train :trainDao.initTrainsList()) {
+                if (trainId == train.getTrainId()) {
+                    userTrain = train;
+                }
             }
+            logger.info("User train is "+ userTrain);
+        } catch (DataAccessException ex) {
+            logger.error("DataAccesException "+ex.getErrorCode());
         }
-        request.setAttribute("userTrain",userTrain);
-        request.setAttribute("firstName",firstName);
-        request.setAttribute("lastName",lastName);
+        request.setAttribute("userTrain", userTrain);
+        request.setAttribute("firstName", firstName);
+        request.setAttribute("lastName", lastName);
         getServletContext().getRequestDispatcher("/settlementPage.jsp").forward(request, response);
     }
 }

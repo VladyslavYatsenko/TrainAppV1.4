@@ -1,9 +1,8 @@
-package com.railway.dao.impl;
+package com.railway.dao.mysql.impl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import java.util.logging.Logger;
 
 public  abstract class MySqlConnect {
     private String url = "jdbc:mysql://localhost/trainproject?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";

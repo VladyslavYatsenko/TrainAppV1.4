@@ -1,19 +1,16 @@
-package com.railway.dao.impl;
+package com.railway.dao.mysql.impl;
 
-import classes.order.Order;
-import classes.passanger.Passanger;
 import classes.train.Train;
-import com.railway.dao.TrainDAO;
+import com.railway.dao.TrainDao;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class MySqlTrainDao extends MySqlConnect implements TrainDAO {
+public class MySqlTrainDao extends MySqlConnect implements TrainDao {
     final static Logger logger=Logger.getLogger(DataAccessException.class);
     @Override
     public List<Train> initTrainsList() throws DataAccessException {
@@ -35,13 +32,12 @@ public class MySqlTrainDao extends MySqlConnect implements TrainDAO {
                         resultSet.getString("arrival_time")));
             }
             resultSet.close();
-
+            logger.info("Trains list was created "+trainsList);
         } catch (SQLException ex) {
             throw new DataAccessException(3);
         } finally {
             closeConnection();
         }
-        logger.info("Trains list was created "+trainsList);
         return trainsList;
     }
 
@@ -55,13 +51,13 @@ public class MySqlTrainDao extends MySqlConnect implements TrainDAO {
                     + "'" + train.getDepartureDate() + "'," + "'" + train.getDepartureTime() + "'," + "'" + train.getArrivalDate() + "'," + "'" + train.getArrivalTime() + "')";
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
             preparedStatement.executeUpdate(query);
-
+            logger.info("Train was added to trains"+train.toString());
         } catch (SQLException ex) {
             throw new DataAccessException(1);
         } finally {
             closeConnection();
         }
-        logger.info("Train was created"+train.toString());
+
     }
 
     @Override
@@ -84,12 +80,13 @@ public class MySqlTrainDao extends MySqlConnect implements TrainDAO {
                         resultSet.getString("arrival_time"));
             }
             resultSet.close();
+            logger.info("Train was found"+train.toString());
         } catch (SQLException ex) {
             throw new DataAccessException(3);
         } finally {
             closeConnection();
         }
-        logger.info("Train was found"+train.toString());
+
         return train;
     }
 }

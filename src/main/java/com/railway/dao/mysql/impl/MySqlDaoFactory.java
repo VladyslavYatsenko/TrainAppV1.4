@@ -1,23 +1,23 @@
-package com.railway.dao.impl;
+package com.railway.dao.mysql.impl;
 
 import com.railway.dao.DaoFactory;
-import com.railway.dao.OrderDAO;
-import com.railway.dao.PassangerDAO;
-import com.railway.dao.TrainDAO;
+import com.railway.dao.OrderDao;
+import com.railway.dao.PassangerDao;
+import com.railway.dao.TrainDao;
 
 public class MySqlDaoFactory implements DaoFactory {
     @Override
-    public OrderDAO createOrderDao() {
+    public OrderDao createOrderDao() {
         return new MySqlOrderDao();
     }
 
     @Override
-    public PassangerDAO createPassangerDao() {
+    public PassangerDao createPassangerDao() {
         return new MySqlPassangerDao();
     }
 
     @Override
-    public TrainDAO createTrainDao() {
+    public TrainDao createTrainDao() {
         return new MySqlTrainDao();
     }
 }

@@ -1,7 +1,7 @@
 package com.railway.dao;
 
 public interface DaoFactory {
-    public abstract OrderDAO createOrderDao();
-    public abstract PassangerDAO createPassangerDao();
-    public abstract TrainDAO createTrainDao();
+    public abstract OrderDao createOrderDao();
+    public abstract PassangerDao createPassangerDao();
+    public abstract TrainDao createTrainDao();
 }

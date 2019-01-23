@@ -1,7 +1,7 @@
-package com.railway.dao.impl;
+package com.railway.dao.mysql.impl;
 
 import classes.order.Order;
-import com.railway.dao.OrderDAO;
+import com.railway.dao.OrderDao;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySqlOrderDao extends MySqlConnect implements OrderDAO {
+public class MySqlOrderDao extends MySqlConnect implements OrderDao {
     final static Logger logger=Logger.getLogger(DataAccessException.class);
     @Override
     public List<Order> initOrdersList() throws DataAccessException {
@@ -24,13 +24,14 @@ public class MySqlOrderDao extends MySqlConnect implements OrderDAO {
                 ordersList.add(new Order(resultSet.getInt("order_id"), resultSet.getInt("train_id"), resultSet.getInt("passanger_id")));
             }
             resultSet.close();
+            logger.info("Orders List Created "+ordersList);
         }catch (SQLException ex){
             throw new DataAccessException(3);
         }
         finally {
             closeConnection();
         }
-        logger.info("Orders List Created "+ordersList);
+
         return ordersList;
     }
 
@@ -45,15 +46,15 @@ public class MySqlOrderDao extends MySqlConnect implements OrderDAO {
             while (resultSet.next()){
                 order = new Order(resultSet.getInt("order_id"),resultSet.getInt("train_id"),resultSet.getInt("passanger_id"));
             }
-
             resultSet.close();
+            logger.info("Order was find "+order.toString());
         }catch (SQLException ex){
             throw new DataAccessException(3);
         }
         finally {
             closeConnection();
         }
-        logger.info("Order was find "+order.toString());
+
         return order;
     }
 }

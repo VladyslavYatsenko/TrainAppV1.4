@@ -1,13 +1,11 @@
 package com.railway.dao;
 
 import classes.train.Train;
-import com.railway.dao.impl.DataAccessException;
+import com.railway.dao.mysql.impl.DataAccessException;
 
-import javax.xml.crypto.Data;
-import java.sql.SQLException;
 import java.util.List;
 
-public interface TrainDAO {
+public interface TrainDao {
     public abstract List<Train> initTrainsList() throws DataAccessException;
 
     public abstract void createTrain(Train train) throws DataAccessException;

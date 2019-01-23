@@ -1,7 +1,11 @@
 package servlets;
 
-import DAO.interfaces.TrainDAO;
 import classes.train.Train;
+import com.railway.dao.DaoFactory;
+import com.railway.dao.TrainDao;
+import com.railway.dao.mysql.impl.DataAccessException;
+import com.railway.dao.mysql.impl.MySqlDaoFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,11 +19,16 @@ import java.time.LocalDate;
 
 @WebServlet("/CreateTrainServlet")
 public class CreateTrainServlet extends HttpServlet {
-    DAOFactory daoFactory;
+    final static Logger logger=Logger.getLogger(CreateTrainServlet.class);
+
+    DaoFactory daoFactory;
+    TrainDao trainDao;
+    public void init() {
+        daoFactory=new MySqlDaoFactory();
+        trainDao=daoFactory.createTrainDao();
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        daoFactory = new DAOFactory();
-        TrainDAO trainDAO = daoFactory.createTrainDao();
         PrintWriter out = response.getWriter();
         int trainNumber = Integer.parseInt(request.getParameter("trainNumber"));
         String initialStation = request.getParameter("initialStation");
@@ -45,10 +54,11 @@ public class CreateTrainServlet extends HttpServlet {
             out.print("Error cost");
         } else {
             try {
-                trainDAO.createTrain(new Train(trainNumber, initialStation, endStation, cost, departureDate, departureTime, arrivalDate, arrivalTime));
+                trainDao.createTrain(new Train(trainNumber, initialStation, endStation, cost, departureDate, departureTime, arrivalDate, arrivalTime));
                 out.print("Train Created");
-            } catch (SQLException ex) {
+            } catch (DataAccessException ex) {
                 out.print("Can`t create a train,check your trainId or trainNumber they must be unique");
+                logger.info("DataAccessException "+ex.getErrorCode());
             }
         }
     }

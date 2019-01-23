@@ -1,9 +1,4 @@
-package com.railway.dao.impl;
-
-import org.apache.log4j.Logger;
-
-import javax.xml.crypto.Data;
-import java.io.PrintWriter;
+package com.railway.dao.mysql.impl;
 
 public class DataAccessException extends Exception {
 

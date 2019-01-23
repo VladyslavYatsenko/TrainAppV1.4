@@ -1,5 +1,8 @@
 package servlets;
 
+import com.railway.dao.mysql.impl.DataAccessException;
+import org.apache.log4j.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +14,7 @@ import java.io.PrintWriter;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+    final static Logger logger=Logger.getLogger(LoginServlet.class);
     final String login = "Admin";
     final String password = "6991";
 
@@ -18,16 +22,17 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String userName = request.getParameter("login");
         String userPassword = request.getParameter("password");
-        System.out.println(userName);
-        System.out.println(userPassword);
+
         if (userName.equals(login) && userPassword.equals(password)) {
             HttpSession session=request.getSession();
             session.setAttribute("username",userName);
-
             response.sendRedirect("/adminPage.jsp");
+            logger.info("Admin came-> "+userName+" password"+userPassword);
 
         } else {
+            logger.warn("Error Login-> "+userName+" "+userPassword);
             response.sendRedirect("/index.jsp");
+
         }
     }
 }

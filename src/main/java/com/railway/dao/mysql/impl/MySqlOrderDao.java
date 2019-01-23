@@ -1,6 +1,7 @@
 package com.railway.dao.mysql.impl;
 
 import classes.order.Order;
+import classes.passanger.Passanger;
 import com.railway.dao.OrderDao;
 import org.apache.log4j.Logger;
 
@@ -56,5 +57,20 @@ public class MySqlOrderDao extends MySqlConnect implements OrderDao {
         }
 
         return order;
+    }
+
+    @Override
+    public void createOrder(Passanger passanger) throws DataAccessException {
+        try{
+            connectDb();
+            String query = "INSERT INTO orders (train_id,passanger_id) VALUES (" + passanger.getTrainId() + "," + passanger.getPassangerId() + ")";
+            PreparedStatement preparedStatement=getConnection().prepareStatement(query);
+            preparedStatement.executeUpdate(query);
+            logger.info("Order was created");
+        }catch (SQLException ex){
+            throw new DataAccessException(1);
+        }finally {
+            closeConnection();
+        }
     }
 }

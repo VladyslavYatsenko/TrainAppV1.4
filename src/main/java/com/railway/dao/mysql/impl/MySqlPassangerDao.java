@@ -70,7 +70,7 @@ public class MySqlPassangerDao extends MySqlConnect implements PassangerDao {
                     " VALUES ('" + passanger.getFirstName() + "','" + passanger.getLastName() + "','" + passanger.getTrainId() + "')";
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
             preparedStatement.executeUpdate(query);
-            logger.info("Passanger was added to passangers" + passanger.toString());
+            logger.info("Passanger was added to passangers ");
         } catch (SQLException ex) {
             throw new DataAccessException(3);
         } finally {

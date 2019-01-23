@@ -56,9 +56,9 @@ public class UsersTrainsServlet extends HttpServlet {
                     && date.equals(train.getDepartureDate())
                     && trainTime.isAfter(userTime)) {
                 usersTrainsList.add(train);
-                logger.info("Users trains list is"+usersTrainsList);
             }
         }
+        logger.info("Users trains list is-> "+usersTrainsList);
         if (usersTrainsList.size() == 0) {
             String info="No available trains on your parameters";
             out.println(info);

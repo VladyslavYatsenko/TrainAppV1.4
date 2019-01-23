@@ -39,6 +39,7 @@ public class TicketRegistrationServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         try {
             passangerDao.createPassanger(new Passanger(firstName, lastName, trainId));
+
             for (Train train :trainDao.initTrainsList()) {
                 if (trainId == train.getTrainId()) {
                     userTrain = train;

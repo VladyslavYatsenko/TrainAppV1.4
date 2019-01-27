@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlOrderDao extends MySqlConnect implements OrderDao {
-    final static Logger logger=Logger.getLogger(MySqlOrderDao.class);
+    final static Logger logger = Logger.getLogger(MySqlOrderDao.class);
+
     @Override
     public List<Order> initOrdersList() throws DataAccessException {
-        List<Order> ordersList=new ArrayList<>();
+        List<Order> ordersList = new ArrayList<>();
         try {
             connectDb();
             String query = "SELECT * FROM orders";
@@ -25,11 +26,10 @@ public class MySqlOrderDao extends MySqlConnect implements OrderDao {
                 ordersList.add(new Order(resultSet.getInt("order_id"), resultSet.getInt("train_id"), resultSet.getInt("passanger_id")));
             }
             resultSet.close();
-            logger.info("Orders List Created "+ordersList);
-        }catch (SQLException ex){
+            logger.info("Orders List Created " + ordersList);
+        } catch (SQLException ex) {
             throw new DataAccessException(3);
-        }
-        finally {
+        } finally {
             closeConnection();
         }
 
@@ -38,21 +38,20 @@ public class MySqlOrderDao extends MySqlConnect implements OrderDao {
 
     @Override
     public Order findOrder(int orderId) throws DataAccessException {
-        Order order=new Order();
-        try{
+        Order order = new Order();
+        try {
             connectDb();
-            String query="SELECT * FROM orders WHERE order_id= "+orderId;
-            PreparedStatement preparedStatement=getConnection().prepareStatement(query);
-            ResultSet resultSet=preparedStatement.executeQuery();
-            while (resultSet.next()){
-                order = new Order(resultSet.getInt("order_id"),resultSet.getInt("train_id"),resultSet.getInt("passanger_id"));
+            String query = "SELECT * FROM orders WHERE order_id= " + orderId;
+            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                order = new Order(resultSet.getInt("order_id"), resultSet.getInt("train_id"), resultSet.getInt("passanger_id"));
             }
             resultSet.close();
-            logger.info("Order was find "+order.toString());
-        }catch (SQLException ex){
+            logger.info("Order was find " + order.toString());
+        } catch (SQLException ex) {
             throw new DataAccessException(3);
-        }
-        finally {
+        } finally {
             closeConnection();
         }
 
@@ -61,15 +60,16 @@ public class MySqlOrderDao extends MySqlConnect implements OrderDao {
 
     @Override
     public void createOrder(Passanger passanger) throws DataAccessException {
-        try{
+        try {
             connectDb();
             String query = "INSERT INTO orders (train_id,passanger_id) VALUES (" + passanger.getTrainId() + "," + passanger.getPassangerId() + ")";
-            PreparedStatement preparedStatement=getConnection().prepareStatement(query);
+            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
             preparedStatement.executeUpdate(query);
             logger.info("Order was created");
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
+
             throw new DataAccessException(1);
-        }finally {
+        } finally {
             closeConnection();
         }
     }

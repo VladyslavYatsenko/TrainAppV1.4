@@ -18,14 +18,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @WebServlet("/AdminTrainsServlet")
 public class AdminTrainsServlet extends HttpServlet {
     final static Logger logger=Logger.getLogger(AdminTrainsServlet.class);
-    List<Train> trainsList = new ArrayList<>();
+    List<Train> trainsList = new LinkedList<>();
     List<Order> ordersList = new ArrayList<>();
-    List<Passanger> passangersList = new ArrayList<>();
+    List<Passanger> passangersList = new LinkedList<>();
     DaoFactory daoFactory;
     OrderDao ordersDao;
     PassangerDao passangersDao;

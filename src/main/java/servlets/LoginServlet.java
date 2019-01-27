@@ -18,8 +18,7 @@ public class LoginServlet extends HttpServlet {
     final String login = "Admin";
     final String password = "6991";
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         String userName = request.getParameter("login");
         String userPassword = request.getParameter("password");
 
@@ -28,11 +27,11 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username",userName);
             response.sendRedirect("/adminPage.jsp");
             logger.info("Admin came-> "+userName+" password"+userPassword);
-
+//            session.removeAttribute("username");
         } else {
             logger.warn("Error Login-> "+userName+" "+userPassword);
             response.sendRedirect("/index.jsp");
-
         }
+
     }
 }

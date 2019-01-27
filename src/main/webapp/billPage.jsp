@@ -12,7 +12,7 @@
 </head>
 <body>
 <table border="1"  bgcolor="yellow" cellpadding="2" cellspacing="3">
-    <p align="center"><h3>Here your Ticket(You can print it)</h3></p>
+    <h3 align="center">Here your Ticket(You can print it)</h3></p>
     <tr>
         <td>First Name</td>
         <td>${passangerFirstName}</td>

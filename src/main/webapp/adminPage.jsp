@@ -13,7 +13,7 @@
         response.sendRedirect("/index.jsp");
     }
 %>
-Welcome ${username}
+<h3 align="center">Welcome ${username}</h3>
 <table align="center">
     <tr>
         <td><a href="index.jsp" type="">Initial Page</a></td>
@@ -23,16 +23,34 @@ Welcome ${username}
         <td><a href="chooseTrainPage.jsp">Choose Train Page</a></td>
     </tr>
 </table>
-<form action="AdminTrainsServlet" method="post">
-    <input type="submit" value="Create Train">
-</form>
-<form action="LogoutServlet">
-    <input type="submit" value="Logout">
-</form>
+<table align="center">
+    <tr>
+        <td>
+            <form action="AdminTrainsServlet" method="post">
+                <input type="submit" value="Create Train" style="width: 100%" align="center">
+            </form>
+        </td>
+        <td>
+            <form action="RedirectToDeleteServlet" method="get">
+                <input type="submit" value="Delete Train" align="center" style="width: 100%">
+            </form>
+        </td>
+        <td>
+            <form action="LogoutServlet">
+                <input type="submit" value="Logout" style="width: 100%" align="center">
+            </form>
+        </td>
+        <td>
+            <form action="AdminTrainsServlet">
+                <input type="submit" value="Show Project Information" align="center" style="width: 100%">
+            </form>
+        </td>
+    </tr>
+</table>
+
 <form action="AdminTrainsServlet">
-    <input type="submit" value="Show Project Information" align="center">
-    <table>
-        <H3>Trains List:</H3>
+    <table align="center">
+        <H3 align="center">Trains List:</H3>
         <thead>
         <tr>
             <th>#Train Id</th>
@@ -62,8 +80,8 @@ Welcome ${username}
         </c:forEach>
         </tbody>
     </table>
-    <table>
-        <H3>Passangers List</H3>
+    <table align="center">
+        <H3 align="center">Passangers List</H3>
         <thead>
         <tr>
             <th>#Passanger Id</th>
@@ -83,8 +101,8 @@ Welcome ${username}
         </c:forEach>
         </tbody>
     </table>
-    <table>
-        <H3>Orders List</H3>
+    <table align="center">
+        <H3 align="center">Orders List</H3>
         <thead>
         <tr>
             <th>#Order ID</th>

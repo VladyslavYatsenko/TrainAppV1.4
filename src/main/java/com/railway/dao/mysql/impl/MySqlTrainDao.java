@@ -45,8 +45,7 @@ public class MySqlTrainDao extends MySqlConnect implements TrainDao {
     public void createTrain(Train train) throws DataAccessException {
         try {
             connectDb();
-            String query = "" +
-                    "INSERT INTO trains " +
+            String query ="INSERT INTO trains " +
                     "(train_num,initial_station,end_station,cost,departure_date,departure_time,arrival_date,arrival_time)"
                     + " VALUES " + "('" + train.getTrainNumber() + "','" + train.getInitialStation() + "'," + "'" + train.getEndStation() + "'," + "'" + train.getCost() + "',"
                     + "'" + train.getDepartureDate() + "'," + "'" + train.getDepartureTime() + "'," + "'" + train.getArrivalDate() + "'," + "'" + train.getArrivalTime() + "')";
@@ -98,7 +97,30 @@ public class MySqlTrainDao extends MySqlConnect implements TrainDao {
             String query="DELETE FROM trains WHERE train_id ="+trainId;
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
             preparedStatement.execute();
-            logger.info("Train was deleted from trains to trains");
+            logger.info("Train was deleted from trains");
+        }catch (SQLException ex){
+            throw new DataAccessException(2);
+        }finally {
+            closeConnection();
+        }
+    }
+
+    @Override
+    public void updateTrain(Train train) throws DataAccessException {
+        try{
+            connectDb();
+            String query="UPDATE trains SET  "+
+                    ",train_num="+train.getTrainNumber()+
+                    ",initial_station="+train.getInitialStation()+
+                    ",end_station="+train.getEndStation()+
+                    ",cost="+train.getCost()+
+                    ",departure_date="+train.getDepartureDate()+
+                    ",departure_time="+train.getDepartureTime()+
+                    ",arrival_date="+train.getArrivalDate()+
+                    ",arrival_time="+train.getArrivalTime()+"WHERE train_id="+train.getTrainId();
+            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            preparedStatement.execute();
+            logger.info("Train was updated");
         }catch (SQLException ex){
             throw new DataAccessException(2);
         }finally {

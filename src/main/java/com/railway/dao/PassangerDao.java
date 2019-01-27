@@ -12,4 +12,8 @@ public interface PassangerDao {
     public  abstract Passanger findPassanger(int passangerId) throws DataAccessException;
 
     public abstract void createPassanger(Passanger passanger) throws DataAccessException;
+
+    public abstract void deletePassanger(int passangerId) throws  DataAccessException;
+
+    public abstract void deletePassangerWithTrains(int trainId) throws  DataAccessException;
 }

@@ -70,7 +70,7 @@ public class MySqlPassangerDao extends MySqlConnect implements PassangerDao {
                     " VALUES ('" + passanger.getFirstName() + "','" + passanger.getLastName() + "','" + passanger.getTrainId() + "')";
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
             preparedStatement.executeUpdate(query);
-            logger.info("Passanger was added to passangers ");
+            logger.info("Passenger was added to passangers ");
         } catch (SQLException ex) {
             throw new DataAccessException(3);
         } finally {
@@ -78,4 +78,35 @@ public class MySqlPassangerDao extends MySqlConnect implements PassangerDao {
         }
 
     }
+
+    @Override
+    public void deletePassanger(int passangerId) throws DataAccessException {
+        try{
+            connectDb();
+            String query="DELETE FROM passangers WHERE passanger_id ="+passangerId;
+            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            preparedStatement.execute();
+            logger.info("Passanger was deleted from passangers ");
+        }catch (SQLException ex){
+            throw new DataAccessException(2);
+        }finally {
+            closeConnection();
+        }
+    }
+
+    @Override
+    public void deletePassangerWithTrains(int trainId) throws DataAccessException {
+        try{
+            connectDb();
+            String query="DELETE FROM passangers WHERE train_id ="+trainId;
+            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            preparedStatement.execute();
+            logger.info("Passanger was deleted from passangers ");
+        }catch (SQLException ex){
+            throw new DataAccessException(2);
+        }finally {
+            closeConnection();
+        }
+    }
+
 }

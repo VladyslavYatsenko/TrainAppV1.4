@@ -23,15 +23,26 @@
         <td><a href="chooseTrainPage.jsp">Choose Train Page</a></td>
     </tr>
 </table>
+<br>
 <table align="center">
     <tr>
+        <td>
+            <form action="CreatePassengerServlet" method="post">
+                <input type="submit" value="Create Passenger" style="width: 100%" align="center">
+            </form>
+        </td>
+        <td>
+            <form action="DeletePassengerServlet" method="post">
+                <input type="submit" value="Delete Passenger" style="width: 100%" align="center">
+            </form>
+        </td>
         <td>
             <form action="AdminTrainsServlet" method="post">
                 <input type="submit" value="Create Train" style="width: 100%" align="center">
             </form>
         </td>
         <td>
-            <form action="RedirectToDeleteServlet" method="get">
+            <form action="DeleteTrainServlet" method="post">
                 <input type="submit" value="Delete Train" align="center" style="width: 100%">
             </form>
         </td>
@@ -71,7 +82,7 @@
                 <td align="center">${train.trainNumber}</td>
                 <td align="center">${train.initialStation}</td>
                 <td align="center">${train.endStation}</td>
-                <td align="center">${train.cost}</td>
+                <td align="center">${train.cost} UAH</td>
                 <td align="center">${train.departureDate}</td>
                 <td align="center">${train.departureTime}</td>
                 <td align="center">${train.arrivalDate}</td>

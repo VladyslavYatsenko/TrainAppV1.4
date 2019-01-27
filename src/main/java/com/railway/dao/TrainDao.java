@@ -15,4 +15,6 @@ public interface TrainDao {
 
     public abstract void deleteTrain(int trainId) throws DataAccessException;
 
+    public abstract void updateTrain(Train train) throws DataAccessException;
+
 }

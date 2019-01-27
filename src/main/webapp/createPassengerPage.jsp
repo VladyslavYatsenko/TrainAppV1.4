@@ -6,11 +6,19 @@
     <title>Creation Ticket</title>
 </head>
 <body>
-<form action="DeleteTrainServlet" method="get">
+<form action="CreatePassengerServlet">
     <table align="center">
-        <caption>Delete Train Panel</caption>
+        <caption>Create Passenger Panel</caption>
         <tr>
-            <td>Choose Train Id:</td>
+            <td>Input First Name:</td>
+            <td> <input type="text" name="firstName" style="width: 100%"></td>
+        </tr>
+        <tr>
+            <td>Input Last Name:</td>
+            <td> <input type="text" name="lastName" style="width: 100%"></td>
+        </tr>
+        <tr>
+            <td>Input Train Id:</td>
             <td>
                 <select name="trainId" style="width: 100%">
                     <c:forEach var="train" items="${trainsId}">
@@ -18,11 +26,16 @@
                     </c:forEach>
                 </select>
             </td>
-            <td><input type="submit" value="delete"></td>
+        </tr>
+        <tr>
+            <td>Create</td>
+            <td>
+                <input type="submit" value="Create Train" style="width: 100%">
+            </td>
         </tr>
     </table>
     <table align="center">
-        <H3 align="center">Trains List:</H3>
+        <H3 align="center">Trains List</H3>
         <thead>
         <tr>
             <th>#Train Id</th>

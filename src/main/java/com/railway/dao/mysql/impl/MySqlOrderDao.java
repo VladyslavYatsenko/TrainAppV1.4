@@ -73,4 +73,34 @@ public class MySqlOrderDao extends MySqlConnect implements OrderDao {
             closeConnection();
         }
     }
+
+    @Override
+    public void deleteOrder(int passangerId) throws DataAccessException {
+        try{
+            connectDb();
+            String query="DELETE FROM orders WHERE passanger_id ="+passangerId;
+            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            preparedStatement.execute();
+            logger.info("Order was deleted from orders ");
+        }catch (SQLException ex){
+            throw new DataAccessException(2);
+        }finally {
+            closeConnection();
+        }
+    }
+
+    @Override
+    public void deleteOrderWithTrains(int trainId) throws DataAccessException {
+        try{
+            connectDb();
+            String query="DELETE FROM orders WHERE train_id ="+trainId;
+            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            preparedStatement.execute();
+            logger.info("Order was deleted from orders ");
+        }catch (SQLException ex){
+            throw new DataAccessException(2);
+        }finally {
+            closeConnection();
+        }
+    }
 }
